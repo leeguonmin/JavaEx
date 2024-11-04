@@ -2,7 +2,7 @@ package com.javaex.basic.flow;
 
 import java.util.Scanner;
 
-// 
+// 여기서부터 }까지가 하나의 클래스
 public class ConditionalEx {
 
 	public static void main(String[] args) {
@@ -87,7 +87,7 @@ public class ConditionalEx {
 	}
 
 	
-	
+	// 혼자 먼저 해본거라 주석했음
 //	private static void ifEx3() {
 //		Scanner scanner = new Scanner(System.in);
 //		System.out.println("정수를 입력하세요:");
@@ -147,6 +147,7 @@ public class ConditionalEx {
 	
 	
 	
+	// 여기서부터
 	private static void switchEx() {
 		// switch 사용해서 위와 같은 예제 풀어보기
 		// ifPractice0  ->  switchEx ~ case 로
@@ -177,8 +178,10 @@ public class ConditionalEx {
 		}
 		scanner.close();
 	}
+	// 여기까지 하나의 메모리 블록
 	
 	
 	
 }
+// 여기까지가 하나의 클래스
 

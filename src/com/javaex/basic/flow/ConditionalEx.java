@@ -10,7 +10,9 @@ public class ConditionalEx {
 //		ifEx2();
 //		ifEx3()
 //		ifPractice01();
-		switchEx();
+//		switchEx();
+//		switchEx2();
+		switchPractine();
 
 	}
 
@@ -26,7 +28,6 @@ public class ConditionalEx {
 		    // (자격조건)  ->  자격 조건에 합당하다 {} < 들어올수있음
 		if (score >= 60) {    // 조건 만족시
 			System.out.println("이열 합격입니다");
-			
 		} else {
 			// 조건 불만족시
 			System.out.println("저런, 안타깝지만 불합격이세요~");
@@ -179,6 +180,80 @@ public class ConditionalEx {
 		scanner.close();
 	}
 	// 여기까지 하나의 메모리 블록
+	
+	
+	private static void switchEx2() {
+		// 1, 3, 5, 7, 8, 10, 12월 > 31일
+		// 2 > 28일
+		// 4, 6, 9, 11 > 30일
+		Scanner scanner = new Scanner(System.in);
+		
+		
+		System.out.print("월을 입력하세요: ");
+		int month = scanner.nextInt();
+		
+		switch (month) {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:		// month == 1 or month == 3 ......
+			System.out.println(month + "는 31일입니다.");
+			break;
+		case 2:
+			System.out.println(month + "는 28일입니다.");
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			System.out.println(month + "는 30일입니다");
+			break;
+		default:
+			System.out.println(month + "월이 어딨어?");
+			break;
+		}
+		scanner.close();
+	}
+	
+	
+	private static void switchPractine() {
+		// TODO: 이 코드를 나중에 enum (열거형) 객체로 다시 만들 예정임
+		
+		// 문자열 변수에 문자열로 요일 정보를 입력
+		// "SUNDAY" -> 휴식
+		// "MONDAY" ~ "THURSDAY" -> 열공
+		// "FRIDAY" > 열공 후 불금 
+		// "SATURDAY" > 주말
+		
+//		String day = "SUNDAY";		// 재생하면 'SUNDAY에는 휴식'
+		String day = "MONDAY";		// 재생하면 'MONDAY에는 열공'
+//		String day = "MONDA";		// 재생하면 'MONDA에는 난 누구지?'
+		String action;
+		
+		switch (day) {
+		case "SUNDAY":
+			action = "휴식";
+			break;
+		case "MONDAY":
+		case "TUESDAY":
+		case "WEDNDAY":
+		case "THURDAY":
+			action = "열공";
+			break;
+		case "SATUDAY":
+			action = "주말";
+			break;
+		default:
+			action = "난 누구지?";
+			break;
+		}
+		
+		System.out.println(day + "에는 " + action);
+		
+	}
 	
 	
 	

@@ -41,7 +41,9 @@ public class testEx {
 			System.out.println("C등급");
 		} else if (num >= 60 & num <= 69) {
 			System.out.println("D등급");
-		} 
+		} else {
+			System.out.println("F등급");
+		}
 		scanner.close();
 	}
 	

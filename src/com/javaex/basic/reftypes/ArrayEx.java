@@ -1,10 +1,13 @@
 package com.javaex.basic.reftypes;
 
+import java.util.Arrays;
+
 public class ArrayEx {
 
 	public static void main(String[] args) {
-		usingArray();
-
+//		usingArray();		//  1차원 배열
+		multiDimArrayEx();	// 2차원 배열 
+		
 	}
 
 	private static void usingArray() {
@@ -17,8 +20,6 @@ public class ArrayEx {
 		names = new String[] {
 				"김", "이", "박", "최"
 		};		// 초기값이 이미 있을 때
-		
-		
 		
 		scores = new int[4];		//  빈 배열 만들기
 		// 인덱스 접근
@@ -42,12 +43,61 @@ public class ArrayEx {
 															heights[i],
 															scores[i]);			
 		}
+		
+		System.out.println();
+		// scores 배열이 있음. 근데!
+		int scores2[] = scores;			// 참조 복제 (가장 쉬운 복제지만, 정상적인 복제는 아님) 근데 이게 왜 중요하냐. 얘네 메모리 구조를 볼 필요가 있음
+		
+		System.out.println("scores:" + Arrays.toString(scores));
+		System.out.println("scores2:" + Arrays.toString(scores2));
+		
+		// scores2의 2번 인덱스 숫자를 변경
+		scores2[2] = 100;
+		System.out.println("scores2:" + Arrays.toString(scores2));
+		System.out.println("scores:" + Arrays.toString(scores));		// 출력하면, scores2에서만 100점으로 바꿀려했는데, 얘도 100점으로 수정되어버림
+																		// 왜냐, 참조 복제의 경우. scores를 복제해서 2가 나온거라, 결국 heep에 들어있는 메모리가 같아서
+																		// 같이 복제 되는 거임
+		// 참조 복제 -> 객체의 주소를 복사하는 것 (주의해야 함)
+		
 	
 	}
 	
 	
 	
-	
+	private static void multiDimArrayEx() {
+		// 5행 10열의 2차원 배열 (예제인거임)
+		int[][] twoDimens = new int[5][10];		// 빈 2차원 배열
+		
+		// 기본 데이터가 있을 경우
+		int table[][] = {
+				{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 },
+				{ 2, 3, 4, 5, 6, 7, 8, 9, 0, 1 },
+				{ 3, 4, 5, 6, 7, 8, 9, 0, 1, 2 },
+				{ 4, 5, 6, 7, 8, 9, 0, 1, 2, 3 },
+				{ 5, 6, 7, 8, 9, 0, 1, 2, 3, 4 }
+		};
+		
+		System.out.println("table.length:" + table.length);			// -1 이라면서 왜 5 나오는거야?ㅠ 못들었어 타자치느냐ㅠ 어우
+		// 인덱스 범위 : table[0] ~ table[table.length - 1]
+		
+		System.out.println("table[0].length:" + table[0].length);
+		// 인덱스 범위 : table[0][0] ~ table[0][table[0].length - 1]
+		
+		// table 배열 내부의 모든 요소의 합을 구하시오
+		int sum = 0; 
+		for (int row = 0; row < table.length; ++row) { 	// 행 루프
+			for (int col = 0; col < table[row].length; ++col) {	// 열루프
+				int val = table[row][col];
+				
+				System.out.print(val + "\t");
+				sum += val; 		// 내부 cell 데이터 합산
+			}
+			System.out.println();
+		}
+		
+		System.out.println("합산 결과: " + sum);
+		
+	}
 	
 	
 	

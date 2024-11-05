@@ -25,10 +25,20 @@ public class Ex13 {
 			System.out.println(sec + "는(은)" + fir + "의 약수입니다.");
 		} else if (fir > sec && fir / sec != 0) {
 			System.out.println(sec + "는(은)" + fir + "의 약수가 아닙니다 제발");
-		} else if (fir < sec && sec / fir != 0) {
+		} else {
 			System.out.println(sec + "는(은)" + fir + "의 약수가 아닙니다 제발");
 		}
-		
+			
+			
+			
+			
+			
+			
+			
+//			if (fir < sec && sec / fir != 0) {
+//			System.out.println(sec + "는(은)" + fir + "의 약수가 아닙니다 제발");
+//		}
+//		
 		
 		
 		

@@ -8,7 +8,8 @@ public class LoopEx {
 //		whileEx();
 //		whileGuge();
 //		doWhileEx();
-		forGugu();
+//		forGugu();
+		randomEx();
 
 	}
 	
@@ -96,6 +97,33 @@ public class LoopEx {
 		scanner.close();
 		
 	}
+	
+	
+	private static void randomEx() {
+		// Math 클래스 : 수학 상수 와 수학 함수를 모아둔 클래스이다
+		// 1 ~ 45 까지의 정수 난수 6개를 추출하는 예제
+		// for 버전 하나, while 버전 하나 - 이렇게 총 두개 만들거임
+		
+		// for문 버전
+		for (int i = 0; i < 6; i++) {
+			System.out.println((int)(Math.random() * 45) + 1);
+			System.out.println("\t");
+		}
+		System.out.println();
+		
+		
+		// while문 버전
+		int i = 0;
+		
+		while (i < 6) {
+			System.out.println((int)(Math.random() * 45) + 1);
+			System.out.println("\t");
+			++i;
+		}
+	}
+	
+	
+	
 	
 	
 	

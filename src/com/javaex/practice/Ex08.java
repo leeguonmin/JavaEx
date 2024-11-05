@@ -11,15 +11,14 @@ public class Ex08 {
 
 	
 	public static void BMI() {
-		System.out.println("키와 몸무게를 입력해주세요~");
+		System.out.println("키와 몸무게를 입력해주쒜요");
 		
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("키는: ");
 		int hi = scanner.nextInt();
 		System.out.println("몸무게는: ");
 		int wi = scanner.nextInt();
-		double bmi = wi % hi;
-//		bmi = scanner.nextDouble();
+		double bmi = wi / hi;
 		
 		if (18.5 <= bmi) {
 			System.out.println("저체중입니다.");

@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class ArrayEx {
 
 	public static void main(String[] args) {
-//		usingArray();		//  1차원 배열
-		multiDimArrayEx();	// 2차원 배열 
+		usingArray();		//  1차원 배열
+//		multiDimArrayEx();	// 2차원 배열 
 		
 	}
 
@@ -77,7 +77,7 @@ public class ArrayEx {
 				{ 5, 6, 7, 8, 9, 0, 1, 2, 3, 4 }
 		};
 		
-		System.out.println("table.length:" + table.length);			// -1 이라면서 왜 5 나오는거야?ㅠ 못들었어 타자치느냐ㅠ 어우
+		System.out.println("table.length:" + table.length);			// 0부터 시작하기 때문에 -1 이라고 이해했는데 왜 5 나오는거야?ㅠ 못들었어 타자치느냐ㅠ 어우등신아정신차려ㅠ
 		// 인덱스 범위 : table[0] ~ table[table.length - 1]
 		
 		System.out.println("table[0].length:" + table[0].length);

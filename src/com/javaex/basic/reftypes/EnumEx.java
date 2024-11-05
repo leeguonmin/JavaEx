@@ -1,7 +1,7 @@
 package com.javaex.basic.reftypes;
 
 /*
-// 열거형 객체 생성 (새로운 데이터 타입을 만들어낸다는 뜻)
+// 여기다쓰면 에러나서, Enum 박스를 따로 만들어줬음. 이름 Week
 public enum Week {
 	SUNDAY,
 	MONDAY,
@@ -13,13 +13,17 @@ public enum Week {
 */
 
 
+
+
+
+
 public class EnumEx {
 
 	public static void main(String[] args) {
-//		usingEnum();
+		usingEnum();
 		
 		// switchPractine()의 enum 버전
-		switchEnumPractice();
+//		switchEnumPractice();
 
 	}
 
@@ -42,7 +46,9 @@ public class EnumEx {
 		System.out.printf(obj.name() + " " + obj.ordinal());
 		
 		// 열거 상수 목록
-		System.out.println("Enum Week:");
+		System.out.println(" Enum Week:");
+		
+		
 		Week[] days = Week.values();		// []가 배열 표시임 / 배열은, 상자를 만들때, 같은 데이터 여러개를 배열시키는. 그냥 쉽게 말하면 week 안에 있는 데이터로 배열 하겠다고. 7개 방 생기겠지
 		
 		for (int i = 0; i < days.length; ++i) {

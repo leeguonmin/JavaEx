@@ -99,7 +99,7 @@ public class LoopEx {
 	}
 	
 	
-	private static void randomEx() {
+	private static void randomEx() {			// 로또!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		// Math 클래스 : 수학 상수 와 수학 함수를 모아둔 클래스이다
 		// 1 ~ 45 까지의 정수 난수 6개를 추출하는 예제
 		// for 버전 하나, while 버전 하나 - 이렇게 총 두개 만들거임

@@ -5,8 +5,10 @@ import java.util.Arrays;
 public class ArrayEx {
 
 	public static void main(String[] args) {
-		usingArray();		//  1차원 배열
+//		usingArray();		//  1차원 배열
 //		multiDimArrayEx();	// 2차원 배열 
+//		arrayCopyForEx();
+		arrayCopySystem();
 		
 	}
 
@@ -101,11 +103,42 @@ public class ArrayEx {
 	
 	
 	
+	private static void arrayCopyForEx() {
+		// 배열은 크기 변경이 안된다 ~
+		// (기존 박스가 꽉 찼는데 추가하려면) 새 배열을 생성하고 복사해야함
+		int source[] = {1,2,3};
+		System.out.println("원본:"+Arrays.toString(source));
+		
+		// 7개의 빈 공간이 더 필요하다
+		int target[] = new int[10];
+		
+		//  source 있는 애들을 복사!
+		for (int i = 0; i<source.length; ++i) {			// ++i 하나씩 늘려간다			// 시작위치를 바구면,  source에 있는 숫자가 들어가는 위치가 바뀌기도 함
+			target[i] = source[i];
+		}
+		System.out.println("복사본: " + Arrays.toString(target));
+	}
 	
 	
 	
-	
-	
+	private static void arrayCopySystem() {
+		// 손 쉬운 배열 복제 ( arrayCopyForEx() 얘는 무식한 배열 복제였었음)
+		
+		int source[] = {1,2,3};
+		System.out.println("원본:"+Arrays.toString(source));
+		
+		int[] target = new int[10];			// 10개 짜리 정수형 배열을 하나 만들었습니다 짜잔
+		
+		// 복제
+		System.arraycopy(source,				// 원본 뱌열
+				0,							// 시작 인덱스
+				target,						// 타겟 배열
+//				0,							// 타겟 배열의 시작 인덱스
+				4,							// > 타겟 배열 시작 인덱스를 이렇게 4로 바꿔주면, 출력하면 4번째에서부터 복사되어있는걸 볼 수 있음 
+				source.length);				//복사할 길이 
+		
+		System.out.println("복사본: " + Arrays.toString(target));
+	}
 	
 	
 	

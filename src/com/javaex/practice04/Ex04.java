@@ -17,10 +17,11 @@ public class Ex04 {
 		int i;
 		for (i=0; i < data.length; i++) {
 			if (i % 3 == 0) {
-				count;
+				
+				
 			}
 		}
-		retune count;
+//		retune count;
 		
 		
 		

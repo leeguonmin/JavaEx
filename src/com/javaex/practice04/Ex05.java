@@ -8,12 +8,13 @@ public class Ex05 {
 		
 		
 		Scanner scanner = new Scanner(System.in);
-		int i = scanner.nextInt();
+//		int i = scanner.nextInt();				> 이걸 추가하는 바람에 i=10 으로 인식되면서, 이볅한 값보다 10이 더 더해짐
 		
 		int[] num = new int[5];
 		int total = 0;
 		
-		for (i = 0; i < 4; i++) {
+		int i;
+		for (i = 0; i <= 4; ++i) {
 			num[i] = scanner.nextInt();
 			total += num[i];
 		}

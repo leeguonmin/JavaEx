@@ -10,13 +10,13 @@ public class Ex05 {
 		Scanner scanner = new Scanner(System.in);
 //		int i = scanner.nextInt();				> 이걸 추가하는 바람에 i=10 으로 인식되면서, 이볅한 값보다 10이 더 더해짐
 		
-		int[] num = new int[5];
-		int total = 0;
+		int[] num = new int[5];	// 배열 이름, 배열 몇개인지 
+		int total = 0;			// 합한거
 		
 		int i;
 		for (i = 0; i <= 4; ++i) {
 			num[i] = scanner.nextInt();
-			total += num[i];
+			total = total + num[i];
 		}
 		System.out.println("평균은 "+total/i +" 입니다.");
 		

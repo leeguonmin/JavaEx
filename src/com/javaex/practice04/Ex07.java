@@ -14,16 +14,15 @@ public class Ex07 {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("금액: ");
 		int sa = scanner.nextInt();
-		
-		
-		int 
-		
-		
-		
-		for (int i=0; i<won.length; i++) {
+		// 여기다 금액을 적어
+		// 그럼 이제 뭐해야해 // 금액.......에서 지폐를 빼야지 차례차례.........어떻게
+
+		// con 이... 합이야! 이 합을...어ㅓㅓㅓㅓㅓㅓㅓㅓ 지폐 배열들로 쳐내 쳐쳐 어떻게쳐
+		int i;
+		for (i=0; i<won.length; i++) {
+			int con = sa / won[i];				// 아니지 con이 지폐 개수야 그치? 그치...합은무슨	
 			
-			
-		System.out.println(mon + ": "+ con + "개");
+		System.out.println(mon[i] + ": "+ con + "개");
 		
 		}
 		

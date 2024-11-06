@@ -9,18 +9,18 @@ public class MethodEx {
 	public static void main(String[] args) {
 		// 1.
 		// 매개변수가 없고 리턴도 없다 (매개변수 x, 리턴 x)
-//		printMessage();
+		printMessage();
 		
 		
 		// 2.
 		// 매개변수 x, 리턴 o
-//		String message = getMessage();
-//		System.out.println("getMessage:"+ message);
+		String message = getMessage();
+		System.out.println("getMessage:"+ message);
 		
 		
 		// 3.
 		// 매개변수 o, 리턴 x
-//		printSum(10,20);
+		printSum(10,20);
 		
 		// 4.
 		// 매개변수 o, 리턴 o

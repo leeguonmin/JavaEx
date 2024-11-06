@@ -106,8 +106,8 @@ public class LoopEx {
 		
 		// for문 버전
 		for (int i = 0; i < 6; i++) {
-			System.out.println((int)(Math.random() * 45) + 1);
-			System.out.println("\t");
+			System.out.print((int)(Math.random() * 45) + 1);
+			System.out.print("\t");
 		}
 		System.out.println();
 		
@@ -116,8 +116,8 @@ public class LoopEx {
 		int i = 0;
 		
 		while (i < 6) {
-			System.out.println((int)(Math.random() * 45) + 1);
-			System.out.println("\t");
+			System.out.print((int)(Math.random() * 45) + 1);
+			System.out.print("\t");
 			++i;
 		}
 	}

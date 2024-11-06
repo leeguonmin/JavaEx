@@ -9,7 +9,6 @@ public class MainArgs {
 		System.out.println("전달된 매개 변수:"+ Arrays.toString(args));
 		// 얘를 배포하기 위해, 배포를 위한 jar 생성
 		
-
 	}
 
 	

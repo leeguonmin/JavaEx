@@ -23,5 +23,15 @@ public class StaticEx {
 		System.out.println("생성자 호출");
 		System.out.println("참조카운트:"+refCount);
 	}
+	
+	
+	// 소멸자 	(생성된 인스턴스를 없애기 위해선, 제거가 아니라 연결을 끊는거임)
+	protected void finalize() throws Throwable {
+		--refCount;
+		super.finalize();
+		System.out.println("소멸자 호출");
+	}
+	
+	
 
 }

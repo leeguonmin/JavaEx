@@ -60,7 +60,6 @@ public class GoodsApp {
 //		camera.price = 400_000;
 		camera.setName("Nikon");
 		camera.setPrice(400_000);
-		
 //		System.out.printf("%s -> %,d%n", camera.name, camera.price);
 //		System.out.printf("%s -> %,d%n", camera.getName(), camera.getPrice());
 		camera.showInFo();
@@ -83,7 +82,7 @@ public class GoodsApp {
 	
 	
 	
-	
+	}
 	
 	
 

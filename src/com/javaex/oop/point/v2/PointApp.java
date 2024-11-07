@@ -1,10 +1,12 @@
 package com.javaex.oop.point.v2;
 
-// v2
+// v2. 생성자
 class  point {
 	// 필드 (필드는 은닉시킨다)
 	private int x;
 	private int y;
+	
+	
 	
 	// ▼ 기본 생성자는 기본적으로 이렇게 생겼다 
 	public point() {

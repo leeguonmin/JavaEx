@@ -9,7 +9,7 @@ class Goods {					// 제한자를 따로 설정하지 않았지? 이걸 디폴�
 	private String name;
 	private int price;
 	// private 추가해주니까, 밑에 싹 다 에러남. 공유안되니까
-	// 해결하는 방법? 있다!! ㄱㄷ  -> 우회 접근
+	// 해결하는 방법? 있다!! ㄱㄷ  -> "우회 접근(Getter와 Setter)"
 	
 	
 	// 우회 접근 방법 ▼
@@ -17,12 +17,14 @@ class Goods {					// 제한자를 따로 설정하지 않았지? 이걸 디폴�
 	// name 필트를 위한 Getter 
 	public String getName() {
 		return name;
+		// 네임을, 출력하라
 	}
 	
 	// name 필드를 위한 Setter
 	public void setName(String name) {
 		this.name = name;
 		// this -> 현재 인스턴스 자체
+		// 네임을, 가져와라
 	}
 	
 	// price 필드를 위한 Getter  
@@ -35,9 +37,9 @@ class Goods {					// 제한자를 따로 설정하지 않았지? 이걸 디폴�
 		this.price = price;
 	}
 	
-	// 읽기만 가능하면(필요하면) Getter      	* 그래서 읽기만 가능한게 어떤때고
-	// 쓰기만 가능하면(필요하면) Setter 		* 쓰기만 가능한게 어떤때여..? 근본부터 모르겠다
-	// 둘 다 필요하면 둘 다 쓰는거임 (예제는  둘 다 썼음)
+	// 읽기만 가능하면(필요하면) Getter      	* 근데 읽기만 가능한게 어떤때고
+	// 쓰기만 가능하면(필요하면) Setter 		* 쓰기만 가능한게 어떤때인거죠 ..? 근본부터 모르겠다
+	// 둘 다 필요하면 둘 다 쓰는거임 (예제는 둘 다 썼음. 모르겠다 평생 둘 다 쓰다보면 언젠가 아, 하고 알때가 오나?)
 
 	
 }

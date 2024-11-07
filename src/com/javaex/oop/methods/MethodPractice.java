@@ -30,7 +30,7 @@ public class MethodPractice {
 	private static int getRandomNumber() {
 		return int man;
 	}
-	
+	ffgdfg
 	
 	
 }

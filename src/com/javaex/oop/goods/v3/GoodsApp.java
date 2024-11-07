@@ -1,4 +1,4 @@
-package com.javaex.oop.goods.v2;
+package com.javaex.oop.goods.v3;
 
 
 // Goods v2. 접근 제한자
@@ -13,6 +13,7 @@ class Goods {					// 제한자를 따로 설정하지 않았지? 이걸 디폴�
 	
 	
 	// 우회 접근 방법 ▼
+	// Getter/ Setter 
 	
 	// name 필트를 위한 Getter 
 	public String getName() {
@@ -38,7 +39,13 @@ class Goods {					// 제한자를 따로 설정하지 않았지? 이걸 디폴�
 	// 읽기만 가능하면(필요하면) Getter      	* 그래서 읽기만 가능한게 어떤때고
 	// 쓰기만 가능하면(필요하면) Setter 		* 쓰기만 가능한게 어떤때여..? 근본부터 모르겠다
 	// 둘 다 필요하면 둘 다 쓰는거임 (예제는  둘 다 썼음)
-
+	
+	
+	// 일반 메서드
+	public void showInFo() {
+		System.out.println("상품병:"+name);
+		System.out.printf("가격:%,d원%n",price);
+	}
 	
 }
 
@@ -55,19 +62,23 @@ public class GoodsApp {
 		camera.setPrice(400_000);
 		
 //		System.out.printf("%s -> %,d%n", camera.name, camera.price);
-		System.out.printf("%s -> %,d%n", camera.getName(), camera.getPrice());
+//		System.out.printf("%s -> %,d%n", camera.getName(), camera.getPrice());
+		camera.showInFo();
 
 		
 		Goods on = new Goods();
 		on.setName("LG그램");
 		on.setPrice(900_000);
-		System.out.printf("%s -> %,d%n", on.getName(), on.getPrice());
+//		System.out.printf("%s -> %,d%n", on.getName(), on.getPrice());
+		camera.showInFo();
 		
 		
 		Goods mug = new Goods();
 		mug.setName("머그컵");
 		mug.setPrice(2_000);
-		System.out.printf("%s -> %,d%n", mug.getName(), mug.getPrice());
+//		System.out.printf("%s -> %,d%n", mug.getName(), mug.getPrice());
+		camera.showInFo();
+		
 	}
 	
 	

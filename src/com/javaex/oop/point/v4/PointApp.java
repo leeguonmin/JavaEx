@@ -51,6 +51,7 @@ class  point {
 	// 각 메서드는 매개변수의 타입, 순서, 개수 에 따라 구별된다
 
 	public void draw(boolean bShow) {			
+		// 먼저 이렇게 메세지 만들어주고
 	String message = String.format("점[x=%d, y=%d]을", x,y);
 //	message += bShow ? "그렸습니다." : "지웠습니다" ;		// 트루면 그렸습니다, 패일이면 지웠습니다 가  뜰 수 있게 
 	if (bShow)
@@ -111,15 +112,21 @@ class ColorPoint extends point {
 	}
 	
 	@Override
-	public void draw(boolean bShow) {			
-		String message = String.format("색상점[x=%d, y=%d, color=%s]를 ", x,y,color);
-		message += bShow ? "그렸습니다." : "지웠습니다" ;		// 트루면 그렸습니다, 패일이면 지웠습니다 가  뜰 수 있게 
+	public void draw(boolean bShow) {
+		String message = String.format("색상점[x=%d, y=%d, color=%s]를 ", x,y,color);		// 먼저 이렇게 메세지 만들어주고
+		message += bShow ? "그렸습니다." : "지웠습니다!!!!!!!!!" ;		// 트루면 그렸습니다, 패일이면 지웠습니다 가  뜰 수 있게 
 //		if (bShow)
 //			message+="그렸습니다.";
 //		else 
 //			message+="지웠습니다.";
 		System.out.println(message);
+		
+		// 오버라이드 했지만 부모의 기능을 다시 사용해야할때
+		super.draw(bShow); 				//이렇게!!
+		
+		
 		}
+	// 지금 이렇게 덮어쓰기 했지만, 나중에 아쉬워질 수 있잖아? 부모가 물려준걸 다시 써야할 수도 있잖아? 그땐 super 써줭
 	
 }			
 

@@ -24,8 +24,11 @@ public class StaticExApp {
 			// 흐름보려고 강제로 돌려본거고, 실제로 우리가 할 일은 없을거다. 
 
 	}
-
-	
+		
+		
+		// static 클래스 
+		System.out.println(Calc.PI);
+		System.out.println(Calc.getSum(1,2,3,4,5));
 	
 	
 	

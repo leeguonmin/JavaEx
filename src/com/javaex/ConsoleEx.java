@@ -24,6 +24,7 @@ public class ConsoleEx {
 		consoleInput ();
 		
 	}
+	
 
 	// 콘솔 입력 예제
 	public static void consoleInput () {

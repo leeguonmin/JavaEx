@@ -1,5 +1,6 @@
 package com.javaex.oop.methods;
 
+// 뭔가 했네 이거 연습임 연습인데.. 흠 
 public class MethodPractice {
 
 	

@@ -42,6 +42,8 @@ class  point {
 	public void draw() {
 		System.out.printf("점[x=%d, y=%d]을 그렸습니다.%n", x, y);
 	}
+	
+	
 	// 메서드 오버로딩 
 	// 한 클래스 내에 같은 이름을 가진 메서드
 	// 각 메서드는 매개변수의 타입, 순서, 개수 에 따라 구별된다

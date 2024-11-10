@@ -34,12 +34,13 @@ public class StringEx {
 		int total = 10, eat = 7;
 		String fruit = "사과";
 		System.out.println(total + "개의 " + fruit + "중에 " + eat + "개를 먹었다");
-		// 이전에 사용하던 방식
-		
-		// formatting 을 이용한 방식
+		// ▲이전에 사용하던 방식
+		// ▼formatting 을 이용한 방식
 		System.out.printf("%d개의 %s중에 %d개를 먹었다%n", total, fruit, eat);
 		
-		// string.format 매서드를 활용한 것
+		
+		
+//		// string.format 매서드를 활용한 것
 		String template = "%d개의 %s중에 %d개를 먹었다";
 		System.out.println(String.format(template, 10, "사과", 5));
 		

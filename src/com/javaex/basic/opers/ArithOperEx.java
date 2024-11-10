@@ -3,8 +3,8 @@ package com.javaex.basic.opers;
 public class ArithOperEx {
 
 	public static void main(String[] args) {
-//		arithBasic();
-		incrOpers();
+		arithBasic();
+//		incrOpers();
 	}
 	
 	private static void incrOpers() {

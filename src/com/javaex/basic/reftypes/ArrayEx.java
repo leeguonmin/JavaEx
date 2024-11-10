@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class ArrayEx {
 
 	public static void main(String[] args) {
-//		usingArray();		//  1차원 배열
+		usingArray();		//  1차원 배열
 //		multiDimArrayEx();	// 2차원 배열 
 //		arrayCopyForEx();
 //		arrayCopySystem();

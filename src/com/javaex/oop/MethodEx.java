@@ -9,24 +9,24 @@ public class MethodEx {
 	public static void main(String[] args) {
 		// 1.
 		// 매개변수가 없고 리턴도 없다 (매개변수 x, 리턴 x)
-//		printMessage();
+		printMessage();
 		
 		
 		// 2.
 		// 매개변수 x, 리턴 o
-//		String message = getMessage();
-//		System.out.println("getMessage:"+ message);
+		String message = getMessage();
+		System.out.println("getMessage:"+ message);
 		
 		
 		// 3.
 		// 매개변수 o, 리턴 x
-//		printSum(10,20);
+		printSum(10,20);
 		
 		// 4.
 		// 매개변수 o, 리턴 o
-//		System.out.println(getSum(10,20));
+		System.out.println(getSum(10,20));
 		// 5.매개변수 o, 리턴 o (오버로그. 중복 권유)
-//		System.out.println(getSum(10,20,30));
+		System.out.println(getSum(10,20,30));
 		
 		
 		// 6. 매개 변수 개수를 알 수 없을 때의 해결 방법

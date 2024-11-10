@@ -229,8 +229,10 @@ public class ConditionalEx {
 		// "SATURDAY" > 주말
 		
 //		String day = "SUNDAY";		// 재생하면 'SUNDAY에는 휴식'
-		String day = "MONDAY";		// 재생하면 'MONDAY에는 열공'
+//		String day = "MONDAY";		// 재생하면 'MONDAY에는 열공'
 //		String day = "MONDA";		// 재생하면 'MONDA에는 난 누구지?'
+//		String day = "SATUDAY";
+		String day="난 몰라유";
 		String action;
 		
 		switch (day) {

@@ -3,6 +3,7 @@ package com.javaex.basic.types;
 // 정수형 데이터 타입
 // byte (1) < short (2) < int (4) < long (8)
 // 정수형의 기본은 int
+// 실수형 기본은 double
 public class IntLongEx {
 	public static void main(String[] ages) {
 		// 선언

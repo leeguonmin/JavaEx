@@ -30,7 +30,6 @@ public class CastingEx {
 		System.out.println(f);
 		System.out.println(i);	
 		
-		
 	}
 	
 	
@@ -69,6 +68,7 @@ public class CastingEx {
 		// 근데 마지막에 얘는 왜 적는겨? :3c
 
 		// 컨트롤, 쉬프트, f 누르면 정리 됨
+		System.out.println();	
 
 	}
 

@@ -8,8 +8,8 @@ public class LoopEx {
 //		whileEx();
 //		whileGuge();
 //		doWhileEx();
-//		forGugu();
-		randomEx();
+		forGugu();
+//		randomEx();
 
 	}
 	

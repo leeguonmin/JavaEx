@@ -3,8 +3,9 @@ package com.javaex.basic.flow;
 public class FlowcontolEx {
 
 	public static void main(String[] args) {
-//		continueEx();
-		breakEx();
+		continueEx();
+//		breakEx();
+		breakExx();
 
 	}
 	
@@ -44,8 +45,28 @@ public class FlowcontolEx {
 		
 		System.out.println("6과 14의 최소공배수(단순무식 버전):" + num);
 		
+		// 근까 이ㄱ 뭐냐면, while은 반복하다가, 조건에 맞는 수를 찾으면, 탈출하라! 라는 뜻 .
+		// 예제를 해석해보자면,  숫ㅈ는 1이고, 조건은 6의 배수이며 동시에 12의 배수인 것을 찾아라. 임. 
+		// 그럼 1은 해당 안되지? 2로 넘어가. 2도 해당 안되지? 3으로 넘어가. 그런식으로 최소공배수를 찾을ㄸ까지 넘어가 (++num을 해줬잖아 증감)
+		// 그러다 6의 배수이자 14의 배수인 42를 찾았어! 그럼 조건에 맞는 숫자를 찾았지? 더 찾으라는 말이 없었지? 
+		// 브레이크! 탈출! 출력!
+		
 	}
 	
+	// 근데 그러면, 어... 6와 14의 최소공배수인 수를 4개 찾아줘. 하려면 어떻ㄱ 해야함?
+	// 이렇게
+	public static void breakExx() { 
+	    int num = 1;
+	    int count = 0; // 최소공배수를 찾은 개수를 세는 변수
+
+	    while (count < 5) {  // 다섯 개를 찾을 때까지 반복
+	        if (num % 6 == 0 && num % 14 == 0) {
+	            System.out.println("6과 14의 최소공배수: " + num);
+	            count++; // 최소공배수를 찾았을 때 카운트 증가
+	        }
+	        ++num;
+	    }
+	}
 	
 	
 	

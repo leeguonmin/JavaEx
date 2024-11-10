@@ -20,7 +20,7 @@ public class ConsoleEx {
 	
 	// 밑에 만든 ConsoleOutput () 방은, 여기 메인 방에 추가해줘야만 실행이 됨. 찾아줘야만 존재할 수 있는 방인거임
 	public static void main(String[] args) {
-//		ConsoleOutput ();
+		ConsoleOutput ();
 		consoleInput ();
 		
 	}
@@ -77,7 +77,7 @@ public class ConsoleEx {
 		System.out.println("Hello, \"Java\"");	// \"(문자)\" : 문장 안의 문자다!
 		System.out.println("Hello, \"Java\" 여기까지도 써진다");
 		
-		System.out.println("\\: 역슬래시");	// 	// -> /
+		System.out.println("\\: 역슬래시");	// 	\\ -> \
 	}
 }
 

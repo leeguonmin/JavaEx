@@ -24,7 +24,7 @@ public class LogicalOperEx {
 		/*
 		 * val가 0초과, val가 10 미만의 값?
 		 * 조건1 : val > 0 ?     // val가 0 초과이냐?
-		 * 조건2 : val < 10 ?		// val가 0 미만이냐?
+		 * 조건2 : val < 10 ?		// val가 10 미만이냐?
 		 * 조건1 and 조건2 (교집합 영역)
 		 */
 		boolean r1 = val > 0;

@@ -7,12 +7,12 @@ public class LangClassTest {
 		Point p2 = new Point(10,10);
 		
 		System.out.println(p == p2);
-		System.out.println(p.equals(p2));
+		System.out.println(p.equals(p2));		// 그치만 point는 우리 만든거잖아? 자바가 비교하는 방ㅂ버을 몰라. 그래서 비교 방법을 알려줘야하는 거임 class Point 에다가
 		
 
 		
 		String s1=new String("Java");
-		String s2=new String("Java");
+		String s2=new String("Java");			// String은 자바가 미리 만들어준 기능이라, 알아서 비교할 수 있음 
 		
 		System.out.println(s1 == s2);		// 주소가 같냐? 주소가 같지 않을테니 false
 		System.out.println(s1.equals(s2));	// 값이 같냐? 값이 같으니 true

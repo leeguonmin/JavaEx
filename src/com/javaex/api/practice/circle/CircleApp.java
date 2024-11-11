@@ -6,7 +6,7 @@ public class CircleApp {
 		Circle a = new Circle(6,4,10);
 		Circle b = new Circle(2,12,10);
 		Circle c = new Circle(3,3,12);
-		Circle d = c;
+		Circle d = c;						// 인스턴스 총 4개 
 		
 		System.out.println(a.equals(b));	// (반지름이 같으면) true
 		System.out.println(a.equals(c));	// false

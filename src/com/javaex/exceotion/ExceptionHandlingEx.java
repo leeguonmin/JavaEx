@@ -7,10 +7,47 @@ import java.util.Scanner;
 
 public class ExceptionHandlingEx {
 
+	
+	
 	public static void main(String[] args) {
-		arithExceptionEx();
+//		arithExceptionEx();
+		arrayExceptionEx();
+		nullpointerExceptionEx();
 
 	}
+	
+	
+	// ===========================================================================================================================//
+	
+	
+	
+	private static void arrayExceptionEx() {
+		int[] intArray=new int[] {3,6,9};
+		
+		// 예외 발생 영역 
+		try {
+		System.out.println(intArray[3]);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.err.println("Error:" + e.getMessage());
+		}
+	} 
+	
+	private static void nullpointerExceptionEx() {
+		String str = new String("Hello Java");
+		
+		try {
+			str =null;			// 여기서 참조를 끊었기 때문에 
+			System.out.println(str.toUpperCase());		// 여기가지 접근할 수 없게 된거임 	(//toUpperCase() 문자를 전부 대문자로 바꿔주는 고정된 명령어)
+			} catch (NullPointerException e) {	
+				System.err.println("널입니다");
+			}
+	}
+	
+	
+	
+	// ===========================================================================================================================//
+	
+	
 	
 	private static void arithExceptionEx() {
 		// 스캐너에서 정수 입력

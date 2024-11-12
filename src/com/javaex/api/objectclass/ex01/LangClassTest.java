@@ -10,6 +10,7 @@ public class LangClassTest {
 		// 그리고, 할당하는 것도 잘 못하는거같음. 주의하자.
 		
 		
+		
 		// Java의 최상위 클래스는 Object
 		// -> 기본적으로 Object 의 모든 기능을 상속
 		System.out.println(p.getClass().getName());		// 얘넨

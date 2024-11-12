@@ -35,6 +35,7 @@ public class WrapperEx {
 		// 형변환 
 		System.out.println(i2.doubleValue());  // Integer i2 = Integer.valueOf("10");를 실수로 변환해서 출력
 		
+		
 		// 자동 박싱(Auto Boxing)
 		Integer i3 = 10;		// => Integer i3 = Integer.valueOf(10);
 		

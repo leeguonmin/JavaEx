@@ -5,11 +5,12 @@ import java.util.Arrays;
 public class ArraysSearch {
 
 	public static void main(String[] args) {
-//		besicSearch();
+		besicSearch();
 		customSearch();
 	
 
 	}
+	
 	
 	
 	

@@ -59,9 +59,9 @@ class Member implements Comparable {
 public class ArraysSortEx {
 
 	public static void main(String[] args) {
-//		basicDoctTest();		// 기본 타입 소트
+		basicDoctTest();		// 기본 타입 소트
 		
-//		basicSortDescTest();		// 기본 타입 내림차순 정렬 
+		basicSortDescTest();		// 기본 타입 내림차순 정렬 
 		
 		sortCustomclassTest();		// 사용자 정의 클래스 정렬
 

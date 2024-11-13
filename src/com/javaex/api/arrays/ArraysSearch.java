@@ -24,7 +24,7 @@ public class ArraysSearch {
 				int[] nums = {5,7,3,1,2,4,6,8,9,10};		
 				System.out.println("원본 배열: "+Arrays.toString(nums));	
 				
-				Arrays.sort(nums); 			// binarySearch는 sort가 우선
+				Arrays.sort(nums); 			// binarySearch는 sort가 우선 (데이터의 순번을 싹 정리 먼저 해줘야 빼든 넣든 추가하든이 가능하단 거임)
 				System.out.println("소팅: "+Arrays.toString(nums));
 				
 				int index = Arrays.binarySearch(nums, 7); 	// nums에서 여기서 7을 찾아볼거임
@@ -41,6 +41,7 @@ public class ArraysSearch {
 				
 				int index2 = Arrays.binarySearch(str, "Python");
 				System.out.println("Python의 인덱스: "+index2);
+				System.out.println();
 				
 	}
 	

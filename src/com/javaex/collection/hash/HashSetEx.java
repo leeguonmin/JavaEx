@@ -2,6 +2,7 @@ package com.javaex.collection.hash;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 
 // 사용자 정의 클래스 
 class Student {
@@ -87,6 +88,8 @@ public class HashSetEx {
 		System.out.println("C++가 포함되어 있는가?:"+hs.contains("C++"));
 		System.out.println("Linux가 포함되어 있는가?:"+hs.contains("Linux"));
 		
+		
+		
 		// 요소 삭제 
 		hs.remove("C++");
 		System.out.println("hs:"+hs);
@@ -165,6 +168,12 @@ public class HashSetEx {
 		hs.add(s2);
 		hs.add(s3);
 		hs.add(s4);
+		
+		// Iterator
+		Iterator<Student> it = hs.iterator();
+		while (it.hasNext()) {
+			System.out.println(it.next());
+		}
 		
 		System.out.println("학생부:"+ hs);
 		

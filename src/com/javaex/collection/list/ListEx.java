@@ -1,6 +1,7 @@
 package com.javaex.collection.list;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ListEx {
@@ -34,9 +35,20 @@ public class ListEx {
 		lst.remove("Java");		// Java 객체를 삭제하라
 		System.out.println(lst);
 		
-		// 요수 개수 확인 
+		// 요소 개수 확인 
 		System.out.println("size=" + lst.size());
 		
+		
+		// List와 Set은 Iterator 반복자를 사용
+		System.out.println();
+		System.out.println("========== Iterator");
+		Iterator<String> it = lst.iterator();
+		while(it.hasNext()) {		// 뒤에 더 있니? 물어봐 
+			String item = it.next();		// 다음 요소 받아오고 이동
+			System.out.println(item);
+		}
+		
+		System.out.println();
 		// TODO : 리스트의 순회
 		// 리스트 비우기 
 		lst.clear();

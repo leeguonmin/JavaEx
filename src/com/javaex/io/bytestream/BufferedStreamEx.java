@@ -14,8 +14,8 @@ public class BufferedStreamEx {
 	static final String rootPath=System.getProperty("user.dir") + "\\files\\";
 	// 프로젝트 내부에 있는 files 디렉터리 위치를 잡아줌
 	
-	static final String source = rootPath + "ing.jpg";
-	static final String target = rootPath + "img_buffered_copy.jpg"; 
+	static final String source = rootPath + "img.jpg";
+	static final String target = rootPath + "img-buffered-copy.jpg"; 
 
 	public static void main(String[] args) {
 		try (

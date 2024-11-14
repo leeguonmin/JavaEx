@@ -33,7 +33,6 @@ public class FileClassEx {
 				System.out.println(subdir + "을 생성하지 못했슴니다.");
 			}
 			
-			
 		}
 		// rootPath 내부에 새파일 생성
 		// 우선 파일 정보를 줘야지 
@@ -51,7 +50,7 @@ public class FileClassEx {
 		file.delete();
 		
 		
-		
+		System.out.println();
 		printInfo(root);
 
 	}
@@ -68,11 +67,11 @@ public class FileClassEx {
 			}
 		} else {
 			// 파일											// <파일의 기본적인 정보 3가지>
-			System.out.print(f.canRead() ? "r" : "."); 	// 읽기 전용이냐? 읽을 수 있는 파일이냐?
-			System.out.print(f.canWrite() ? "w": ".");	// 쓸수 있는 파일이냐?
-			System.out.print(f.canExecute() ? "s" : ".");	// 실행 할 수 있는 파일이냐?
+			System.out.println(f.canRead() ? "r" : "."); 	// 읽기 전용이냐? 읽을 수 있는 파일이냐?
+			System.out.println(f.canWrite() ? "w": ".");	// 쓸수 있는 파일이냐?
+			System.out.println(f.canExecute() ? "s" : ".");	// 실행 할 수 있는 파일이냐?
 			
-			System.out.print(f.getName() + "\t");
+			System.out.println(f.getName() + "\t");
 			System.out.println(f.length());		// f.에 file 적으면 오류나 (주의)
 		}			// 출력되는 것들 중 마지막은 바이트수(예. 8540962) 
 	}

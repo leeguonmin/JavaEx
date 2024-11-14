@@ -17,6 +17,7 @@ public class Customer extends User {
 		this.point = point;
 	}
 	
+	
 	// toString()
 //	@Override
 //	public String toString() {

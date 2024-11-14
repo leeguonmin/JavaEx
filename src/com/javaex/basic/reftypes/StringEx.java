@@ -48,6 +48,7 @@ public class StringEx {
 		
 		
 		
+		
 		// 천단위에 , 포매팅
 		int amount = 123_456_789;
 		System.out.printf("현재 잔고는: %d입니다.%n", amount);

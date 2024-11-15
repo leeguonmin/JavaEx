@@ -9,12 +9,20 @@ public class 문자열반복 {
         String str = sc.next();     
         int n = sc.nextInt();  
         
-        String[] string = new String[];
         int i = 0;
         for(i=0; i<n; ++i) {
-            string[i] = str;
-        System.out.println(str);
+            System.out.print(str);
         }
-        }
-        
     }
+        
+}
+        
+//        String[] string = new String;
+//        int i = 0;
+//        for(i=0; i<n.length(); ++i) {
+//            string[n] = str;
+//        System.out.println(str);
+//        }
+//        }
+//        
+//    }

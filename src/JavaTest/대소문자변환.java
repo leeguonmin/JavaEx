@@ -14,6 +14,7 @@ public class 대소문자변환 {
         	} else {
         		System.out.println(a.toUpperCase());
         	}
+        	
         }
         
     }

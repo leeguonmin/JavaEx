@@ -4,7 +4,7 @@ public class FlowcontolEx {
 
 	public static void main(String[] args) {
 		continueEx();
-//		breakEx();
+		breakEx();
 		breakExx();
 
 	}
@@ -42,8 +42,9 @@ public class FlowcontolEx {
 				break;		// 루프 탈출
 			++num;
 		}
-		
+		System.out.println();
 		System.out.println("6과 14의 최소공배수(단순무식 버전):" + num);
+		System.out.println();
 		
 		// 근까 이ㄱ 뭐냐면, while은 반복하다가, 조건에 맞는 수를 찾으면, 탈출하라! 라는 뜻 .
 		// 예제를 해석해보자면,  숫ㅈ는 1이고, 조건은 6의 배수이며 동시에 12의 배수인 것을 찾아라. 임. 
@@ -66,6 +67,7 @@ public class FlowcontolEx {
 	        }
 	        ++num;
 	    }
+	    System.out.println();
 	}
 	
 	

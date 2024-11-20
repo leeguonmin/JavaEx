@@ -1,6 +1,7 @@
 package JavaTest;
 
-import: java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.List;
 
 class Solution {
     public String[] solution(String[] names) {

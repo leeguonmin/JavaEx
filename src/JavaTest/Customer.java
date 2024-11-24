@@ -7,6 +7,7 @@ public class Customer extends User {
 		super(id,pw,name);
 		this.point=point;
 		
+		
 	}
 
 	public int getPoint() {

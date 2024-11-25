@@ -42,6 +42,7 @@ public class SelectTest {
 			}
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버를 찾지 못했습니다!");
+			e.printStackTrace();					// 이건 왜 추가한건지 모르겟어................. 딴건 뭐 알겟냐마는
 		} catch (SQLException e) {
 			System.out.println("SQLError!");
 		} finally {

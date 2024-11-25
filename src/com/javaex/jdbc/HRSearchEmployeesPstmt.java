@@ -37,6 +37,7 @@ public class HRSearchEmployeesPstmt {
 			pstmt.setString(1,  "%" + keyword.toUpperCase() + "%");
 			pstmt.setString(2, "%" + keyword.toUpperCase() + "%");
 
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

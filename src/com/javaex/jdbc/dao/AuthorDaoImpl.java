@@ -142,7 +142,17 @@ public class AuthorDaoImpl implements AuthorDao {
 
 	@Override
 	public boolean update(AuthorVo vo) {
-		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int daletedCount = 0;
+		
+		
+		
+		
+		
+		
+		
+		
 		return false;
 	}
 

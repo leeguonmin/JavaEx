@@ -2,9 +2,6 @@ package libra;
 
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,6 +17,7 @@ public class UserDaoApp {
 
 		
 //		Welcome();
+		
 
 //		CustomerIdInput();
 
@@ -30,13 +28,88 @@ public class UserDaoApp {
 
 //		RentOrReturn();
 //		SearchBook();
-		BookReturn();
+//		BookReturn();
 
 //		BookRentPossible();
 //		BookRentImpossible();
+		
+		BookRentDate();
+		
 
 	}
 
+
+	private static void BookRentDate() {
+		Scanner scanner = new Scanner(System.in);
+	    RentalDaoImpl dao = new RentalDaoImpl();
+
+	    try (Connection conn = dao.getConnection1()) {
+	        System.out.println("데이터베이스 연결 성공");
+
+	        System.out.print("대여할 책의 아이디를 입력하세요: ");
+	        int bookId = scanner.nextInt();
+
+	        // 책 정보 확인
+	        RentalVo rental = dao.getRentalByBookId(bookId, conn);
+
+	        if (rental != null) { // 대여 기록이 있는 경우
+	            System.out.println("대여할 책의 ID: " + rental.getBook_id());
+	            System.out.println("현재 상태: " + rental.getStatus());
+
+	            if ("대여 중".equals(rental.getStatus())) { 
+	                System.out.println("이 책은 현재 대여 중입니다.");
+	            } else { 
+	                System.out.println("보유 중인 책입니다. 대여하시겠습니까? (Y/N): ");
+	                String response = scanner.next().toUpperCase();
+
+	                if ("Y".equals(response)) {
+	                    boolean isUpdated = dao.updateRentalStatus(rental.getRental_id(), "대여 중", conn);
+	                    if (isUpdated) {
+	                        Date returnDate = dao.calculateReturnDate();
+	                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+	                        System.out.println("대여 완료되었습니다. 반납 날짜는 " + sdf.format(returnDate) + " 입니다.");
+	                    } else {
+	                        System.out.println("대여 상태 업데이트에 실패했습니다.");
+	                    }
+	                } else {
+	                    System.out.println("대여를 취소했습니다.");
+	                }
+	            }
+	        } else { // 대여 기록이 없는 경우
+	            System.out.println("해당 책에 대한 대여 기록이 없습니다.");
+	            System.out.println("책 상태를 확인 중...");
+
+	            // 추가로 책 상태를 DB에서 확인
+	            boolean isAvailable = dao.checkBookAvailability(bookId, conn);
+
+	            if (isAvailable) {
+	                System.out.println("보유 중인 책입니다. 대여하시겠습니까? (Y/N): ");
+	                String response = scanner.next().toUpperCase();
+
+	                if ("Y".equals(response)) {
+	                    boolean isUpdated = dao.createRentalRecord(bookId, conn);
+	                    if (isUpdated) {
+	                        Date returnDate = dao.calculateReturnDate();
+	                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+	                        System.out.println("대여 완료되었습니다. 반납 날짜는 " + sdf.format(returnDate) + " 입니다.");
+	                    } else {
+	                        System.out.println("대여 기록 생성에 실패했습니다.");
+	                    }
+	                } else {
+	                    System.out.println("대여를 취소했습니다.");
+	                }
+	            } else {
+	                System.out.println("해당 책은 대여할 수 없는 상태입니다.");
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("데이터베이스 작업 중 오류 발생!");
+	        e.printStackTrace();
+	    } finally {
+	        scanner.close();
+	    }
+	}
+	
 	
 //	private static void listuser() {
 //		// 작가의 모든 정보를 출력
@@ -188,25 +261,41 @@ public class UserDaoApp {
 		sc.close();
 	}
 
+	
+	
+	
+	
+	
 	public static void ManagerIdInput() {
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("관리자 아이디와 비밀번호를 입력해주세요.");
 		System.out.print("관리자 아이디: ");
-		String managerId = sc.next();
+		String manager_nameid = sc.next();
 		System.out.print("관리자 비밀번호: ");
-		String managerPassword = sc.next();
-
-		System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
-
-		System.out.println("관리자로 확인되었습니다. 관리자 화면으로 전환하겠습니다.");
-		ManagerBookAdd();
+		String manager_password = sc.next();
+		
+		ManagerDao vov = new ManagerDaoImpl();
+		List<ManagerVo> list = vov.search2(manager_nameid, manager_password);
+		
+		if (list.isEmpty()) {
+			System.out.println("관리자가 아닙니다.");
+			
+		} else {
+			System.out.println("관리자로 확인되었습니다. 관리자 화면으로 전환하겠습니다");
+			ManagerBookAdd();
+		}
+		
 
 		sc.close();
 
 	}
 
-	public static void ManagerBookAdd() {
+
+	
+	
+	
+	public static void ManagerBookAdd() { 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("추가할 도서의 정보를 입력해주세요.");
 
@@ -234,6 +323,7 @@ public class UserDaoApp {
 
 		sc.close();
 	}
+	
 
 	public static void JoinCustomer() {
 		Scanner sc = new Scanner(System.in);
@@ -249,13 +339,13 @@ public class UserDaoApp {
 		System.out.print("회원 비밀번호: ");
 		String customersPassword = sc.next();
 		
-		UserVo vo = new UserVo(name, phone_number, customersId, customersPassword);
+//		UserVo vo = new UserVo(name, phone_number, customersId, customersPassword);
 		
 		
 		UserDao dao = new UserDaoImpl();
-		boolean success = dao.insert(vo);
+//		boolean success = dao.insert(vo);
 		
-		System.out.println("Author INSERT " + (success ? "성공" : "실패"));
+//		System.out.println("Author INSERT " + (success ? "성공" : "실패"));
 
 		System.out.println("회원으로 등록되었습니다. 첫화면으로 돌아가서 다시 진행해주세요.");
 		sc.close();
@@ -333,26 +423,26 @@ public class UserDaoApp {
         System.out.println("반납할 도서의 도서 번호를 입력해주세요.");
         int bookId = sc.nextInt(); // book_id를 정수형으로 받음
 
-
-                if (bookId == null) {
-                    System.out.println("아직 반납되지 않았습니다.");
-                } else if (realReturnDate.after(returnDate)) {
-                    // 연체료 계산 (예시)
-                    long diffInMillies = realReturnDate.getTime() - returnDate.getTime();
-                    long diffInDays = diffInMillies / (24 * 60 * 60 * 1000);
-                    System.out.println("반납기한이 지났습니다. 연체료를 지불해주세요. 연체료는 연체일x1000원 으로 책정됩니다.");
-                    System.out.println("연체일수: " + diffInDays + "일, 연체료: " + (diffInDays * 1000) + "원");
-                } else {
-                    System.out.println("기한 내 반납이 완료되었습니다. 안녕히가세요.");
-                }
-            } else {
-                System.out.println("해당 도서는 존재하지 않습니다. 다시 입력해주세요.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        sc.close();
+//
+//                if (bookId == null) {
+//                    System.out.println("아직 반납되지 않았습니다.");
+//                } else if (realReturnDate.after(returnDate)) {
+//                    // 연체료 계산 (예시)
+//                    long diffInMillies = realReturnDate.getTime() - returnDate.getTime();
+//                    long diffInDays = diffInMillies / (24 * 60 * 60 * 1000);
+//                    System.out.println("반납기한이 지났습니다. 연체료를 지불해주세요. 연체료는 연체일x1000원 으로 책정됩니다.");
+//                    System.out.println("연체일수: " + diffInDays + "일, 연체료: " + (diffInDays * 1000) + "원");
+//                } else {
+//                    System.out.println("기한 내 반납이 완료되었습니다. 안녕히가세요.");
+//                }
+//            } else {
+//                System.out.println("해당 도서는 존재하지 않습니다. 다시 입력해주세요.");
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        sc.close();
     }
 
 //		Scanner sc = new Scanner(System.in);
@@ -384,6 +474,8 @@ public class UserDaoApp {
 		System.out.println("기한 내 반납 미완료시 1일마다 연체료 1000원씩 부과됩니다");
 	}
 
+	
+	
 	public static void BookRentImpossible() {
 		Scanner sc = new Scanner(System.in);
 
@@ -428,4 +520,6 @@ public class UserDaoApp {
 		sc.close();
 
 	}
-}
+
+	}
+

@@ -3,111 +3,164 @@ package libra;
 import java.util.Date;
 
 public class RentalVo {
-	private int rentalId;
-	private int bookId;
-	private int customerId;
-	private Date rentalDate;
-	private Date returnDate;
-	private Date realreturnDate;
+	private int rental_id;
+	private int book_id;
+	private int customer_id;
+	private Date rental_date;
+	private Date return_date;
+	private Date realretuen_date;
 	private String status;
 	
 	public RentalVo() {}
 
-	public RentalVo(int rentalId, int bookId, int customerId, Date rentalDate, Date returnDate, Date realreturnDate,
-			String status) {
+	
+
+
+	public RentalVo(int rental_id, int book_id, int customer_id, Date rental_date, Date return_date,
+			Date realretuen_date, String status) {
 		super();
-		this.rentalId = rentalId;
-		this.bookId = bookId;
-		this.customerId = customerId;
-		this.rentalDate = rentalDate;
-		this.returnDate = returnDate;
-		this.realreturnDate = realreturnDate;
+		this.rental_id = rental_id;
+		this.book_id = book_id;
+		this.customer_id = customer_id;
+		this.rental_date = rental_date;
+		this.return_date = return_date;
+		this.realretuen_date = realretuen_date;
 		this.status = status;
 	}
-	
-//	public RentalVo(int bookId, Date rentalDate, Date returnDate, Date realreturnDate, String status) {
-//		
-//	}
-	
-	public RentalVo(int bookId, Date rentalDate, Date returnDate, Date realreturnDate, String status) {
+
+
+
+
+
+	public RentalVo(int book_id) {
 		super();
-		this.bookId = bookId;
-		this.rentalDate = rentalDate;
-		this.returnDate = returnDate;
-		this.realreturnDate = realreturnDate;
-		this.status = status;
+		this.book_id = book_id;
 	}
+
+
+
+	public RentalVo(int book_id, Date realretuen_date) {
+		super();
+		this.book_id = book_id;
+		this.realretuen_date = realretuen_date;
+	}
+
+
+
+	
+	
+	
 	
 
-
-	public RentalVo(int bookId, Date realreturnDate) {
-		super();
-		this.bookId = bookId;
-		this.realreturnDate = realreturnDate;
+	public int getRental_id() {
+		return rental_id;
 	}
 
-	public int getRentalId() {
-		return rentalId;
+
+
+
+	public void setRental_id(int rental_id) {
+		this.rental_id = rental_id;
 	}
 
-	public void setRentalId(int rentalId) {
-		this.rentalId = rentalId;
+
+
+
+	public int getBook_id() {
+		return book_id;
 	}
 
-	public int getBookId() {
-		return bookId;
+
+
+
+	public void setBook_id(int book_id) {
+		this.book_id = book_id;
 	}
 
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
+
+
+
+	public int getCustomer_id() {
+		return customer_id;
 	}
 
-	public int getCustomerId() {
-		return customerId;
+
+
+
+	public void setCustomer_id(int customer_id) {
+		this.customer_id = customer_id;
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+
+
+
+	public Date getRental_date() {
+		return rental_date;
 	}
 
-	public Date getRentalDate() {
-		return rentalDate;
+
+
+
+	public void setRental_date(Date rental_date) {
+		this.rental_date = rental_date;
 	}
 
-	public void setRentalDate(Date rentalDate) {
-		this.rentalDate = rentalDate;
+
+
+
+	public Date getReturn_date() {
+		return return_date;
 	}
 
-	public Date getReturnDate() {
-		return returnDate;
+
+
+
+	public void setReturn_date(Date return_date) {
+		this.return_date = return_date;
 	}
 
-	public void setReturnDate(Date returnDate) {
-		this.returnDate = returnDate;
+
+
+
+	public Date getRealretuen_date() {
+		return realretuen_date;
 	}
 
-	public Date getRealreturnDate() {
-		return realreturnDate;
+
+
+
+	public void setRealretuen_date(Date realretuen_date) {
+		this.realretuen_date = realretuen_date;
 	}
 
-	public void setRealreturnDate(Date realreturnDate) {
-		this.realreturnDate = realreturnDate;
-	}
+
+
 
 	public String getStatus() {
 		return status;
 	}
 
+
+
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
+
+
+	
+	
+
 	@Override
 	public String toString() {
-		return "RentalVo [rentalId=" + rentalId + ", bookId=" + bookId + ", customerId=" + customerId + ", rentalDate="
-				+ rentalDate + ", returnDate=" + returnDate + ", realreturnDate=" + realreturnDate + ", status="
-				+ status + "]";
+		return "RentalVo [rental_id=" + rental_id + ", book_id=" + book_id + ", customer_id=" + customer_id
+				+ ", rental_date=" + rental_date + ", return_date=" + return_date + ", realretuen_date="
+				+ realretuen_date + ", status=" + status + "]";
 	}
+
+
+
 
 	public Date update(int bookId2, Date date) {
 		// TODO Auto-generated method stub

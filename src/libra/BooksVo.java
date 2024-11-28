@@ -16,7 +16,7 @@ public class BooksVo {
 	private int publisher_id;
 	private int author_id;
 
-	public BooksVo() {}
+	public BooksVo() {} 
 
 	public BooksVo(int id, String title, String author, String publisher, Date pubdate, int rate, int stock,
 			int locations_id, int type_id, int publisher_id, int author_id) {

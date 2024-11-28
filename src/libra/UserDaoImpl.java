@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 		} catch (ClassNotFoundException e) {
 			System.err.println("드라이버 로드 실패!");
 		}
-		return conn;
+		return conn; 
 	}
 	
 	
@@ -155,6 +155,13 @@ public class UserDaoImpl implements UserDao {
 		
 		
 		return false;
+	}
+
+
+	@Override
+	public UserVo getUserByIdAndPassword(String customersId, String customersPassword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 		

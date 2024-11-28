@@ -10,6 +10,12 @@ public interface RentalDao {
 	// 특정 키워드를 포함하는 책을 검색 
 	public RentalVo get(Long id);
 	// 특정 아이드를 가진 책 정보를 가져와
+	
+	
+	public RentalVo getBookById(int bookId);
+	
+
+	
 	public boolean insert(RentalVo vo);
 	// 새로운 책 정보를 추가해 
 	

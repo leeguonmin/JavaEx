@@ -15,6 +15,4 @@ public interface RentalDao2 {
     boolean rentBook(int bookId, int customerId);
 
 	boolean rentBook(int bookId);
-
-	boolean rentBookByTitle(String title);
 }

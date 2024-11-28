@@ -1,5 +1,7 @@
 package libra;
 
+// import java.awt.print.Book;
+import lilili.Book;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public interface RentalDao {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	public List<Book> searchBooks(String keyword);
 	
 
 }

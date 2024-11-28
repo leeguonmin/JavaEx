@@ -65,6 +65,7 @@ public class RentalDaoApp2 {
 }
 
 
+
 		
 		/*
 		 RentalDao2 dao = new RentalDaoImpl2();

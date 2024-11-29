@@ -2,7 +2,6 @@ package lilili;
 
 // import java.awt.print.Book;
 import java.util.Date;
-// import lilili.Book;
 
 public class Book {
 	private int id;
@@ -15,15 +14,6 @@ public class Book {
     private int publisher_id;
     private int stock;
     
-    
-
-    
-    
-    
-	public Book() {
-		super();
-	}
-
 
 
 
@@ -42,7 +32,6 @@ public class Book {
 
 
 
-
 	public Book(int id, String title, String author, String publisher, Date pub_date, int rate, int locations_id,
 			int publisher_id, int stock) {
 		super();
@@ -52,9 +41,18 @@ public class Book {
 		this.publisher = publisher;
 		this.pub_date = pub_date;
 		this.rate = rate;
-		Locations_id = locations_id;
+		this.Locations_id = locations_id;
 		this.publisher_id = publisher_id;
 		this.stock = stock;
+	}
+
+
+
+
+
+
+	public Book(int id2, String title2, String publisher2, String string, String string2, int stock2) {
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -230,16 +228,9 @@ public class Book {
 				+ ", pub_date=" + pub_date + ", rate=" + rate + ", Locations_id=" + Locations_id + ", publisher_id="
 				+ publisher_id + ", stock=" + stock + "]";
 	}
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
 	
     
 	

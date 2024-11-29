@@ -15,8 +15,40 @@ public class BooksVo {
 	private int type_id;
 	private int publisher_id;
 	private int author_id;
+	
+	
+	private String author_name;
 
 	public BooksVo() {} 
+
+	
+	
+	
+	public String getAuthor_name() {
+		return author_name;
+	}
+
+
+
+
+	public void setAuthor_name(String author_name) {
+		this.author_name = author_name;
+	}
+
+
+	
+
+
+	public BooksVo(int id, String title, String publisher, String author_name) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.publisher = publisher;
+		this.author_name = author_name;
+	}
+
+
+
 
 	public BooksVo(int id, String title, String author, String publisher, Date pubdate, int rate, int stock,
 			int locations_id, int type_id, int publisher_id, int author_id) {
@@ -122,13 +154,18 @@ public class BooksVo {
 		this.author_id = author_id;
 	}
 
+
+
+
 	@Override
 	public String toString() {
 		return "BooksVo [id=" + id + ", title=" + title + ", author=" + author + ", publisher=" + publisher
 				+ ", pubdate=" + pubdate + ", rate=" + rate + ", stock=" + stock + ", Locations_id=" + Locations_id
-				+ ", type_id=" + type_id + ", publisher_id=" + publisher_id + ", author_id=" + author_id + "]";
+				+ ", type_id=" + type_id + ", publisher_id=" + publisher_id + ", author_id=" + author_id
+				+ ", author_name=" + author_name + "]";
 	}
 
+	
 	
 	
 	

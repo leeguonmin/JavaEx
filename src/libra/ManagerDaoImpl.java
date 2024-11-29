@@ -29,19 +29,7 @@ public class ManagerDaoImpl implements ManagerDao {
 	
 	
 	
-	
-	
-	@Override
-	public List<ManagerVo> getList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<ManagerVo> search(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+
 	
 	
 	
@@ -90,69 +78,4 @@ public class ManagerDaoImpl implements ManagerDao {
 		
 		
 	}
-	
-	
-	public boolean checkBookAvailability(int bookId, Connection conn) throws SQLException {
-	    String sql = "SELECT stock FROM Books WHERE book_id = ?";
-	    PreparedStatement pstmt = conn.prepareStatement(sql);
-	    pstmt.setInt(1, bookId);
-	    ResultSet rs = pstmt.executeQuery();
-
-	    boolean isAvailable = false;
-	    if (rs.next()) {
-	        int isRented = rs.getInt("stock");
-	        isAvailable = (isRented == 0); // 0이면 보유 중
-	    }
-	    rs.close();
-	    pstmt.close();
-	    return isAvailable;
-	}
-	
-	public boolean createRentalRecord(int bookId, Connection conn) throws SQLException {
-	    String sql = "INSERT INTO Rental (book_id, customer_id, rental_date, return_date, status) VALUES (?, ?, NOW(), DATE_ADD(NOW(), INTERVAL 9 DAY), '대여 중')";
-	    PreparedStatement pstmt = conn.prepareStatement(sql);
-	    pstmt.setInt(1, bookId);
-	    pstmt.setInt(2, 1); // 고객 ID는 예시로 1로 설정 (실제 고객 ID 받아와야 함)
-	    int rowsAffected = pstmt.executeUpdate();
-
-	    if (rowsAffected > 0) {
-	        // 책 상태 업데이트
-	        String updateBookSql = "UPDATE books SET is_rented = 1 WHERE book_id = ?";
-	        pstmt = conn.prepareStatement(updateBookSql);
-	        pstmt.setInt(1, bookId);
-	        pstmt.executeUpdate();
-	    }
-	    pstmt.close();
-	    return rowsAffected > 0;
-	}
-	
-	
-	
-	private Connection getConnection() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public UserVo get(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public boolean insert(ManagerVo vo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean update(ManagerVo vo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean delete(Long id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
-
-

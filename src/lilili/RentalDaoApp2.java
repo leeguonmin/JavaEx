@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-
+import java.util.Stack;
 import libra.RentalDao;
 import libra.RentalDaoImpl;
 import lilili.Book;
@@ -14,6 +14,97 @@ import lilili.Book;
 public class RentalDaoApp2 {
 
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+//		bookrental(scanner);
+		bookrrturn(scanner);
+		
+		
+		
+		scanner.close();
+	}
+		
+		
+	public static void bookrrturn(Scanner scanner) {
+		 RentalDaoImpl2 dao = new RentalDaoImpl2();
+
+	        // 1. 반납할 책 ID 입력
+	        System.out.println("반납할 책의 ID를 입력하세요:");
+	        int bookId = scanner.nextInt();
+
+	        // 2. 책 및 대여 정보 조회
+	        Book book = dao.getBookById(bookId);
+	        Rental rental = dao.getRentalByBookId(bookId);
+
+	        if (book == null || rental == null) {
+	            System.out.println("해당 책에 대한 대여 정보가 없습니다.");
+	            return;
+	        }
+	        
+	        // 3. 책 정보 출력
+	        System.out.printf(
+	        	    "책 정보:\nID: %d\t제목: %s\t출판사: %s\t작가: %s\n",
+	        	    book.getId(), book.getTitle(), book.getPublisher(), book.getAuthor());
+
+	        // 4. 반납 여부 확인 
+	        System.out.println("반납 진행 하시겠습니까? (y/n)");
+	        String response = scanner.next();
+	        
+	        if (!response.equals("y")) {
+	        	System.out.println("반납을 취소합니다");
+	        	return;
+	        }
+	        
+	        // response.equals("y") 면 5번으로 넘어가서 반납 진행
+	        // 5. 반납 예정일 확인
+	        Date returnDate = rental.getReturn_date();
+	        int overdueDays = dao.OverDays(returnDate);
+	        // rental.getReturn_date() : 반납 예정일 가져오는
+	        // OverDays : 데이터베이스에 저장된 실제 반납일과 입력된 
+	        // 반납 예정일을 비교해서 연체된 일수를 계산하는 메서드(DaoImpl)
+	        
+	        
+
+	        // 6. 연체 여부 확인
+	        if (overdueDays > 0) {
+	            int lateFee = overdueDays * 1000; // 연체료 계산
+	            System.out.println("반납 예정일을 초과하였습니다. 연체료는 " + lateFee + "원 입니다.");
+	        } else {
+	            System.out.println("반납이 정상적으로 완료되었습니다.");
+	        }
+
+	        // 7. 반납 처리
+	        if (dao.returnBook(bookId)) {
+	            System.out.println("반납 처리가 완료되었습니다.");
+	        } else {
+	            System.out.println("반납 처리 중 오류가 발생했습니다.");
+	        }
+	        
+	        
+//	        // 8. stock 업데이트
+//	        if (dao.returnBook(bookId)) {
+//	            System.out.println("반납 처리가 완료되었습니다.");
+//
+//	            // stock 업데이트
+//	            if (dao.updateStock(bookId)) {
+//	                System.out.println("책의 재고가 정상적으로 업데이트되었습니다.");
+//	            } else {
+//	                System.out.println("재고 업데이트 중 오류가 발생했습니다.");
+//	            }
+//	        } else {
+//	            System.out.println("반납 처리 중 오류가 발생했습니다.");
+//	        }
+
+	    }
+
+	
+	
+	
+	
+	
+	
+		
+	public static void bookrental(Scanner scanner) { 	
 		RentalDao2 dao = new RentalDaoImpl2();
         Scanner sc = new Scanner(System.in);
 
@@ -64,74 +155,3 @@ public class RentalDaoApp2 {
     }
 }
 
-
-
-		
-		/*
-		 RentalDao2 dao = new RentalDaoImpl2();
-	        Scanner sc = new Scanner(System.in);
-
-	        // 1. 검색
-	        System.out.println("검색할 키워드를 입력하세요 (책 제목, 작가, 출판사):");
-	        String keyword = sc.nextLine();
-	        List<Book> books = dao.searchBooks(keyword);
-
-	        if (books.isEmpty()) {
-	            System.out.println("검색 결과가 없습니다.");
-	            return;
-	        }
-
-	        // 2. 결과 출력
-	        System.out.println("검색 결과:");
-	        for (Book book : books) {
-	            System.out.printf("ID: %d, 제목: %s, 작가: %s, 출판사: %s, 재고: %d\n",
-	                              book.getId(), book.getTitle(), book.getAuthor(), 
-	                              book.getPublisher(), book.getStock());
-	        }
-
-	        // 3. 대여할 책 ID 입력
-	        System.out.println("대여할 책 ID를 입력하세요:");
-	        int bookId = sc.nextInt();
-
-	        // 4. 책 재고 확인 (stock == 1이면 대여 가능)
-	        Book selectedBook = books.stream()
-	                                 .filter(book -> book.getId() == bookId)
-	                                 .findFirst()
-	                                 .orElse(null);
-
-	        if (selectedBook == null) {
-	            System.out.println("해당 ID의 책이 없습니다.");
-	        } else if (selectedBook.getStock() > 0) {
-	            System.out.println("대여하시겠습니까? (y/n):");
-	            String answer = sc.next();
-	            if (answer.equalsIgnoreCase("y")) {
-
-	                // 5. 대여 진행
-	                if (dao.rentBook(bookId)) {
-	                    // 현재 날짜 받아오기
-	                    Date today = new Date();
-	                    // Calendar 객체를 사용해 9일을 더한 날짜 계산
-	                    Calendar calendar = Calendar.getInstance();
-	                    calendar.setTime(today);
-	                    calendar.add(Calendar.DATE, 9);
-	                    Date returnDate = calendar.getTime();
-
-	                    // 날짜 형식 지정하여 출력
-	                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM월 dd일");
-	                    String formattedDate = dateFormat.format(returnDate);
-
-	                    System.out.println("대여 완료! 반납 날짜는 " + formattedDate + "입니다.");
-	                } else {
-	                    System.out.println("대여 처리 중 오류가 발생했습니다.");
-	                }
-	            } else {
-	                System.out.println("대여를 취소했습니다.");
-	            }
-	        } else {
-	            System.out.println("해당 책은 재고가 없어 대여할 수 없습니다.");
-	        }
-
-	        sc.close();
-	    }
-	}
-		*/

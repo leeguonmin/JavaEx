@@ -15,4 +15,18 @@ public interface RentalDao2 {
     boolean rentBook(int bookId, int customerId);
 
 	boolean rentBook(int bookId);
+
+	boolean rentBookByTitle(String title);
+
+	Book getBookById(int bookId);
+
+	Rental getRentalByBookId(int bookId);
+
+	boolean returnBook(int bookId);
+
+	List<Book> searchBooks2(String keyword);
+
+	boolean returnBook2(int bookId);
+
+	boolean updateStock(int bookId);
 }

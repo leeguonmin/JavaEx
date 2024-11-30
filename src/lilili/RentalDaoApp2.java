@@ -18,7 +18,7 @@ public class RentalDaoApp2 {
 		
 //		bookrental(scanner);
 		bookrrturn(scanner);
-		
+
 		
 		
 		scanner.close();

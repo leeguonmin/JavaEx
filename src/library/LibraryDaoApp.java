@@ -17,7 +17,7 @@ public class LibraryDaoApp {
 
 //		ListBooks(sc);
 
-		Welcome(sc);
+	//	Welcome(sc);
 
 //		CustomerIdInput(sc);
 
@@ -30,7 +30,7 @@ public class LibraryDaoApp {
 
 //		SearchBook(sc);
 
-		// BookReturn(sc);
+		 BookReturn(sc);
 
 //		BookRentPossible(sc);
 
@@ -173,40 +173,32 @@ public class LibraryDaoApp {
 
 	public static void ManagerBookAdd(Scanner sc) {
 
-		 System.out.println("추가할 도서의 정보를 입력해주세요.");
+		System.out.println("추가할 도서의 정보를 입력해주세요.");
 
-		    System.out.print("도서명: ");
-		    String title = sc.nextLine();
+		System.out.print("도서명: ");
+		String title = sc.next();
 
-		    System.out.print("출판일 (YYYY-MM-DD): ");
-		    String pub_date = sc.nextLine();
+		System.out.print("출판일: ");
+		String pub_date = sc.next();
+		System.out.print("별점: ");
+		String rate = sc.next();
+		System.out.print("재고: ");
+		String stock = sc.next();
 
-		    System.out.print("별점: ");
-		    int rate = sc.nextInt();
+		System.out.print("위치: ");
+		String locations = sc.next();
 
-		    System.out.print("재고: ");
-		    int stock = sc.nextInt();
+		System.out.print("장르: ");
+		String type_name = sc.next();
+		System.out.print("작가: ");
+		String author_name = sc.next();
+		System.out.print("출판사: ");
+		String publisher_name = sc.next();
 
-		    System.out.print("위치 ID: ");
-		    int locationId = sc.nextInt();
+		System.out.println("해당 도서가 도서목록에 저장되었습니다.");
 
-		    System.out.print("장르 ID: ");
-		    int typeId = sc.nextInt();
+	}
 
-		    sc.nextLine();  // 이전 입력의 개행 문자 제거
-		    System.out.print("작가 ID: ");
-		    int authorId = sc.nextInt();
-
-		    System.out.print("출판사 ID: ");
-		    int publisherId = sc.nextInt();
-
-		    UserVo vo = new UserVo(title, pub_date, rate, stock, locationId, typeId, publisherId, authorId);
-
-		    UserDao dao = new UserDaoImpl();
-		    boolean success = dao.insert2(vo);
-
-		    System.out.println("도서 추가 " + (success ? "성공!" : "실패!"));
-		}
 
 	public static void JoinCustomer(Scanner sc) {
 

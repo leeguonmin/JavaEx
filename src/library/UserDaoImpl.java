@@ -1,5 +1,6 @@
 package library;
 
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -386,84 +387,7 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	
-	// 도서 추가
-	@Override
-	public boolean insert2(UserVo vo) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int insertedCount = 0;
-
-		 try {
-		        conn = getConnection();
-		        String sql = "INSERT INTO Books (title, pub_date, rate, stock, Locations_id, type_id, publisher_id, author_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-		        pstmt = conn.prepareStatement(sql);
-
-		        pstmt.setString(1, vo.getTitle());
-		        pstmt.setString(2, vo.getPubdate());
-		        pstmt.setInt(3, vo.getRate());
-		        pstmt.setInt(4, vo.getStock());
-		        pstmt.setInt(5, vo.getLocationId());
-		        pstmt.setInt(6, vo.getTypeId());
-		        pstmt.setInt(7, vo.getPublisherId());
-		        pstmt.setInt(8, vo.getAuthorId());
-
-		        insertedCount = pstmt.executeUpdate();
-
-		    } catch (SQLException e) {
-		        e.printStackTrace();
-		    } finally {
-		        try {
-		            if (pstmt != null) pstmt.close();
-		            if (conn != null) conn.close();
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        }
-		    }
-		    return insertedCount == 1;
-		}
 	
-	
-	
-
-	@Override
-	public List<UserVo> searchRentalBook(int book_id) {
-		List<UserVo> list = new ArrayList<>();
-
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			conn = getConnection();
-			String sql = "SELECT id, title FROM books WHERE stock=1 AND id = ? ";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, book_id);
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				Integer Book_id = rs.getInt(1);
-
-				UserVo vo = new UserVo(Book_id);
-				list.add(vo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
-
-		return list;
-	}
 
 	@Override
 	public boolean stockUpdate(UserVo vo) {
@@ -711,75 +635,87 @@ public class UserDaoImpl implements UserDao {
 	 * 
 	 */
 
+
+	
+	
+	
 	// 책 반납 처리
 	@Override
 	public boolean returnBook(int bookId) {
 		Connection conn = null;
-		PreparedStatement pstmt = null;
+	    PreparedStatement pstmt = null;
 
-		try {
-			conn = getConnection();
-			String sql = "UPDATE Rental SET real_return = NOW() WHERE book_id = ? AND real_return IS NULL";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bookId);
-			int rowsAffected = pstmt.executeUpdate();
-			return rowsAffected > 0;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return false;
+	    try {
+	        conn = getConnection();
+	        String sql = "UPDATE Rental SET real_return = NOW() WHERE book_id = ? AND real_return IS NULL";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, bookId);
+	        int rowsAffected = pstmt.executeUpdate();
+	        return rowsAffected > 0;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null) pstmt.close();
+	            if (conn != null) conn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return false;
 	}
 
 	// 연체일 계산
 	public int OverDays(int book_id) {
 
 		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
 
-		int num = 0;
+	    int num = 0;
 
-		try {
-			conn = getConnection();
+	    try {
+	        conn = getConnection();
 
-			String sql = "SELECT return_expect FROM rental WHERE book_id = ? AND real_return IS NULL";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, book_id);
+	        // 책의 반납 예정일을 가져오는 쿼리 (반납일이 NULL인 경우만)
+	        String sql = "SELECT return_expect FROM Rental WHERE book_id = ?";
+	        // "SELECT return_expect FROM Rental WHERE book_id = ? AND real_return IS NULL
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, book_id);
 
-			rs = pstmt.executeQuery();
+	        rs = pstmt.executeQuery();
 
-			if (rs.next()) { // 결과가 있을 때만 처리
-				Date returnDate = rs.getDate(1); // 반환 예정일
-				long diff = new Date().getTime() - returnDate.getTime(); // 밀리초 차이
-				num = (int) (diff / (1000 * 60 * 60 * 24)); // 일 단위로 변환
+	        if (rs.next()) { // 결과가 있을 때만 처리
+	            java.sql.Timestamp returnDate = rs.getTimestamp(1); // 반환 예정일 (시간 포함)
+	            
+	            if (returnDate != null) {
+	                // 현재 시간과 반납 예정일 차이를 계산
+	                long diff = System.currentTimeMillis() - returnDate.getTime(); // 밀리초 차이
+	                num = (int) (diff / (1000 * 60 * 60 * 24)); // 일 단위로 변환
 
-			} else {
-				System.out.println("해당 도서의 반납 예정일 정보가 없습니다."); // 결과가 없는 경우
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
-		return num;
+	                // 연체일이 음수일 경우, 현재 날짜가 반납 예정일보다 이전인 경우에는 0으로 처리
+	                if (num < 0) num = 0;
+	                
+	        
+	            }
+	        } else {
+	            // 반납 예정일 정보가 없으면 0일 반환
+	            num = 0;
+	
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (pstmt != null) pstmt.close();
+	            if (conn != null) conn.close();
+	        } catch (Exception e) {
+	        }
+	    }
+	    return num;
 
+	
 		// new Date().getTime : 현재 시스템 시간을 밀리초 단위로 반환
 		// returnDate.getTime() : 데이터베이스에 저장된 return 날자의 시간을 밀리초 단위로 변환
 		// diff : 두 시간의 값의 차이를 밀리초 단위로 저장 = 두 날짜 사이에 얼마나 많은 시간이 흘렀는지 밀리초 단위로 표현
@@ -792,5 +728,31 @@ public class UserDaoImpl implements UserDao {
 		// 1000 밀리초 > 1초
 
 		// 긍까 실제 반납일이랑 반납예정일이랑 전부 초단위로 바꿔서 빼준 값을 나누고 int 정수로 받아서 연체된 날짜를 계산
+	}
+
+	@Override
+	public List<UserVo> searchRentalBook(int book_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public int getOrInsertAuthorId1(String authorName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getOrInsertPublisherId(String authorName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int OverDays(Date returnDate) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

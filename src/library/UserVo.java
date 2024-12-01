@@ -22,10 +22,7 @@ public class UserVo {
 	private Integer id;
 	private Integer customer_id;
 	
-	// 기존꺼 건드린느거 무서워서 새로 추가 심장터질거같ㄷ
-	private Integer stock;
-	
-	
+
 	
 
 	/*
@@ -145,6 +142,9 @@ public class UserVo {
 		this.id = id;
 
 	}
+	
+	
+
 
 	public String getTitle() {
 		return title;

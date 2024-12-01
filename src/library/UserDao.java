@@ -42,7 +42,13 @@ public interface UserDao {
 	// 매니저권한 : 도서등록	
 	
 	public List<UserVo> getListC();
-	boolean insert2(UserVo vo);
+	
+	
+	// 작가 id 확인
+	public int getOrInsertAuthorId1(String authorName);
+	// 출판사 id 확인 
+	public int getOrInsertPublisherId(String authorName);
+	int OverDays(Date returnDate);
 	
 
 }

@@ -1,9 +1,9 @@
-package library;
+package user;
 
 import java.util.Date;
 import java.util.List;
 
-import libra.ManagerVo;
+// import libra.ManagerVo;
 
 public interface UserDao {
 	
@@ -39,10 +39,11 @@ public interface UserDao {
 	boolean returnBook(int bookId);									// SQL real_return에 오늘날짜 찍기
 	public int OverDays(int book_id);
 	
+	// 신규도서 추천
+	public List<UserVo> getNewBooks();
 	
 	
-	// 매니저권한 : 도서등록	
-	
+	// 매니저권한 : 도서등록		
 	public List<UserVo> getListC();
 	
 	
@@ -51,7 +52,7 @@ public interface UserDao {
 	// 출판사 id 확인 
 	public int getOrInsertPublisherId(String authorName);
 	int OverDays(Date returnDate);
-	public List<ManagerVo> search6(String manager_nameid, String manager_password);
+	// public List<ManagerVo> search6(String manager_nameid, String manager_password);
 	
 
 }

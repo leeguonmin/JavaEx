@@ -1,6 +1,6 @@
-package library;
+package user;
 
-import java.beans.Statement;
+// import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,6 +25,59 @@ public class UserDaoImpl implements UserDao {
 			System.err.println("드라이버 로드 실패!");
 		}
 		return conn;
+	}
+
+	@Override
+	public List<UserVo> getNewBooks() {
+		List<UserVo> list = new ArrayList<>();
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			conn = getConnection();
+
+			String sql = "SELECT books.title, authors.author_name, publishers.publisher_name, pub_date, rate, Locations_id, types.type_name, books.id\r\n"
+					+ "FROM books JOIN authors ON books.author_id = authors.author_id\r\n"
+					+ "			JOIN types ON books.type_id = types.type_id\r\n"
+					+ "			JOIN publishers ON books.publisher_id = publishers.publisher_id\r\n"
+					+ "ORDER BY Books.id desc limit 5";
+
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				String title = rs.getString(1);
+				String authorName = rs.getString(2);
+				String publisher = rs.getString(3);
+				String pubdate = rs.getString(4);
+				Integer rate = rs.getInt(5);
+				Integer locationId = rs.getInt(6);
+				String type = rs.getString(7);
+				Integer book_id = rs.getInt(8);
+
+				UserVo vo = new UserVo(title, authorName, publisher, pubdate, rate, locationId, type, book_id);
+
+				list.add(vo);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+
+		return list;
 	}
 
 	@Override
@@ -385,9 +438,46 @@ public class UserDaoImpl implements UserDao {
 		}
 		return 1 == insertedCount;
 	}
-	
-	
-	
+
+	@Override
+	public List<UserVo> searchRentalBook(int book_id) {
+		List<UserVo> list = new ArrayList<>();
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+			String sql = "SELECT id, title FROM books WHERE stock=1 AND id = ? ";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, book_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Integer Book_id = rs.getInt(1);
+
+				UserVo vo = new UserVo(Book_id);
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+
+		return list;
+	}
 
 	@Override
 	public boolean stockUpdate(UserVo vo) {
@@ -429,7 +519,7 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 			conn = getConnection();
-			String sql = "SELECT id, title\r\n" + "FROM ooks\r\n" + "WHERE stock=0 AND id LIKE ?";
+			String sql = "SELECT id, title\r\n" + "FROM books\r\n" + "WHERE stock=0 AND id LIKE ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, book_id);
@@ -635,87 +725,87 @@ public class UserDaoImpl implements UserDao {
 	 * 
 	 */
 
-
-	
-	
-	
 	// 책 반납 처리
 	@Override
 	public boolean returnBook(int bookId) {
 		Connection conn = null;
-	    PreparedStatement pstmt = null;
+		PreparedStatement pstmt = null;
 
-	    try {
-	        conn = getConnection();
-	        String sql = "UPDATE Rental SET real_return = NOW() WHERE book_id = ? AND real_return IS NULL";
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, bookId);
-	        int rowsAffected = pstmt.executeUpdate();
-	        return rowsAffected > 0;
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        try {
-	            if (pstmt != null) pstmt.close();
-	            if (conn != null) conn.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
-	    return false;
+		try {
+			conn = getConnection();
+			String sql = "UPDATE Rental SET real_return = NOW() WHERE book_id = ? AND real_return IS NULL";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bookId);
+			int rowsAffected = pstmt.executeUpdate();
+			return rowsAffected > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 
 	// 연체일 계산
 	public int OverDays(int book_id) {
 
 		Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
-	    int num = 0;
+		int num = 0;
 
-	    try {
-	        conn = getConnection();
+		try {
+			conn = getConnection();
 
-	        // 책의 반납 예정일을 가져오는 쿼리 (반납일이 NULL인 경우만)
-	        String sql = "SELECT return_expect FROM Rental WHERE book_id = ?";
-	        // "SELECT return_expect FROM Rental WHERE book_id = ? AND real_return IS NULL
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, book_id);
+			// 책의 반납 예정일을 가져오는 쿼리 (반납일이 NULL인 경우만)
+			String sql = "SELECT return_expect FROM Rental WHERE book_id = ?";
+			// "SELECT return_expect FROM Rental WHERE book_id = ? AND real_return IS NULL
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, book_id);
 
-	        rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 
-	        if (rs.next()) { // 결과가 있을 때만 처리
-	            java.sql.Timestamp returnDate = rs.getTimestamp(1); // 반환 예정일 (시간 포함)
-	            
-	            if (returnDate != null) {
-	                // 현재 시간과 반납 예정일 차이를 계산
-	                long diff = System.currentTimeMillis() - returnDate.getTime(); // 밀리초 차이
-	                num = (int) (diff / (1000 * 60 * 60 * 24)); // 일 단위로 변환
+			if (rs.next()) { // 결과가 있을 때만 처리
+				java.sql.Timestamp returnDate = rs.getTimestamp(1); // 반환 예정일 (시간 포함)
 
-	                // 연체일이 음수일 경우, 현재 날짜가 반납 예정일보다 이전인 경우에는 0으로 처리
-	                if (num < 0) num = 0;
-	                
-	        
-	            }
-	        } else {
-	            // 반납 예정일 정보가 없으면 0일 반환
-	            num = 0;
-	
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        try {
-	            if (rs != null) rs.close();
-	            if (pstmt != null) pstmt.close();
-	            if (conn != null) conn.close();
-	        } catch (Exception e) {
-	        }
-	    }
-	    return num;
+				if (returnDate != null) {
+					// 현재 시간과 반납 예정일 차이를 계산
+					long diff = System.currentTimeMillis() - returnDate.getTime(); // 밀리초 차이
+					num = (int) (diff / (1000 * 60 * 60 * 24)); // 일 단위로 변환
 
-	
+					// 연체일이 음수일 경우, 현재 날짜가 반납 예정일보다 이전인 경우에는 0으로 처리
+					if (num < 0)
+						num = 0;
+
+				}
+			} else {
+				// 반납 예정일 정보가 없으면 0일 반환
+				num = 0;
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return num;
+
 		// new Date().getTime : 현재 시스템 시간을 밀리초 단위로 반환
 		// returnDate.getTime() : 데이터베이스에 저장된 return 날자의 시간을 밀리초 단위로 변환
 		// diff : 두 시간의 값의 차이를 밀리초 단위로 저장 = 두 날짜 사이에 얼마나 많은 시간이 흘렀는지 밀리초 단위로 표현
@@ -729,14 +819,6 @@ public class UserDaoImpl implements UserDao {
 
 		// 긍까 실제 반납일이랑 반납예정일이랑 전부 초단위로 바꿔서 빼준 값을 나누고 int 정수로 받아서 연체된 날짜를 계산
 	}
-
-	@Override
-	public List<UserVo> searchRentalBook(int book_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 
 	@Override
 	public int getOrInsertAuthorId1(String authorName) {

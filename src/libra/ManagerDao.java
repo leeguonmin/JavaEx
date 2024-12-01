@@ -12,6 +12,8 @@ public interface ManagerDao {
 //	public boolean update(ManagerVo vo);
 //	public boolean delete(Long id);
 //	public ManagerVo getUserByIdAndPassword(String customersId, String customersPassword);
+
+	public List<ManagerVo> search6(String manager_nameid, String manager_password);
 	
 
 }

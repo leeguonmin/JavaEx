@@ -35,7 +35,7 @@ public class ManagerDaoImpl implements ManagerDao {
 	
 	
 	@Override
-	public List<ManagerVo> search2(String manager_nameid, String manager_password) {
+	public List<ManagerVo> search6(String manager_nameid, String manager_password) {
 		List<ManagerVo> list = new ArrayList<>();
 		
 		Connection conn= null;

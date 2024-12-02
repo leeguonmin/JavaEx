@@ -187,6 +187,7 @@ public class LibraryDaoApp {
 	        System.out.println("관리자 계정만 로그인이 가능합니다.");
 	        return;
 	    }
+	    
 
 	    MasterDao dao = new MasterDaoImpl();
 	    List<ManagerVo> list = dao.searchmaster(customerNameId, customerPassword);

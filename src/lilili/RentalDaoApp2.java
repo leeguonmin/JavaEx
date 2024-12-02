@@ -7,8 +7,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
-import libra.RentalDao;
-import libra.RentalDaoImpl;
+
+import library.libra.RentalDao;
+import library.libra.RentalDaoImpl;
 import lilili.Book;
 
 public class RentalDaoApp2 {

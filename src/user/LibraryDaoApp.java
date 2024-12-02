@@ -10,18 +10,18 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class LibraryDaoApp {
-	private static UserVo currentUser;
+	private static ManagerVo currentUser;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
 //		ListBooks(sc);
 
-		Welcome(sc);
+	//	Welcome(sc);
 
 //		CustomerIdInput(sc);
 
-//		ManagerIdInput(sc);
+		ManagerIdInput(sc);
 //		ManagerBookAdd(sc);
 
 		
@@ -177,18 +177,38 @@ public class LibraryDaoApp {
 	public static void ManagerIdInput(Scanner sc) {
 
 		System.out.println("관리자 아이디와 비밀번호를 입력해주세요.");
-		System.out.print("관리자 아이디: ");
-		String managerId = sc.next();
-		System.out.print("관리자 비밀번호: ");
-		String managerPassword = sc.next();
+	    System.out.print("관리자 아이디: ");
+	    String customerNameId = sc.next();
+	    System.out.print("관리자 비밀번호: ");
+	    String customerPassword = sc.next();
 
-		System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+	    // 관리자 계정만 허용
+	    if (!"master".equals(customerNameId)) {
+	        System.out.println("관리자 계정만 로그인이 가능합니다.");
+	        return;
+	    }
 
-		System.out.println("관리자로 확인되었습니다. 관리자 화면으로 전환하겠습니다.");
-		ManagerBookAdd(sc);
+	    MasterDao dao = new MasterDaoImpl();
+	    List<ManagerVo> list = dao.searchmaster(customerNameId, customerPassword);
 
+	    if (list == null || list.isEmpty()) {
+	        System.out.println("로그인 실패: 비밀번호가 올바르지 않습니다.\n");
+	    } else {
+	        currentUser = list.get(0); // list의 첫 번째 요소,를 가져옴
+	        System.out.println("로그인 성공! 관리자 화면으로 이동합니다.\n");
+	        ManagerBookAdd(sc);
+	    }
 	}
+	
+	
 
+	
+	
+	
+	
+	
+	
+	// 도서 추가
 	public static void ManagerBookAdd(Scanner sc) {
 
 		System.out.println("추가할 도서의 정보를 입력해주세요.");
@@ -217,6 +237,20 @@ public class LibraryDaoApp {
 
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void JoinCustomer(Scanner sc) {
 
 		System.out.println("회원 등록을 위해 아래 정보를 입력해주세요.");

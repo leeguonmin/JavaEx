@@ -3,7 +3,7 @@ package library;
 import java.util.Date;
 import java.util.List;
 
-import libra.ManagerVo;
+import library.libra.ManagerVo;
 
 public interface UserDao {
 	

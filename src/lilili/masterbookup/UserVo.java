@@ -1,4 +1,4 @@
-package user;
+package lilili.masterbookup;
 
 import java.util.Date;
 
@@ -6,11 +6,16 @@ public class UserVo {
 
 	private String title;
 	private String authorName;
+	private String authoremail;
 	private String publisher;
 	private String pubdate;
 	private Integer rate;
 	private Integer locationId;
 	private String type;
+	private String typeId;
+	
+	private String publisherName;
+	private String publisheremail;
 	
 	private String name;
 	private String email;
@@ -21,6 +26,8 @@ public class UserVo {
 
 	private Integer id;
 	private Integer customer_id;
+	
+	
 	
 
 	
@@ -36,7 +43,7 @@ public class UserVo {
 
 	
 	
-	public UserVo(String title2, String authorName2, String authoremail, int id, String pubDate2, String publisherName, String publisheremail, int rate2, int locationsId) {
+	public UserVo(int id) {
 		super();
 		this.id = id;
 	}

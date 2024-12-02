@@ -1,4 +1,4 @@
-package libra;
+package library.libra;
 
 public class ManagerVo {
 	private int manager_id;

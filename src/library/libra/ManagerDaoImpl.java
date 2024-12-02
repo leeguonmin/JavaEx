@@ -1,4 +1,4 @@
-package libra;
+package library.libra;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -77,5 +77,19 @@ public class ManagerDaoImpl implements ManagerDao {
 		return list;
 		
 		
+	}
+
+
+
+
+
+
+
+
+
+	@Override
+	public List<ManagerVo> search2(String mananameid, String manapassword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

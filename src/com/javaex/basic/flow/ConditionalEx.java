@@ -16,6 +16,7 @@ public class ConditionalEx {
 
 	}
 
+	
 	private static void ifEx() {
 		Scanner scanner = new Scanner(System.in);        // 에러나면 컨트롤 쉬프트 o -> 설계도를 가져온거임
 		

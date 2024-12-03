@@ -1,4 +1,4 @@
-package lilili.masterbookup;
+package library.dmdkr;
 
 public class ManagerVo {
     private String title; // 책 제목

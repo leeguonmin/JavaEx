@@ -1,4 +1,4 @@
-package user;
+package library.glaemfek;
 
 public class ManagerVo {
     private int bookId;

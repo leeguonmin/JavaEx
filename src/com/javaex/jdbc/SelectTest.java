@@ -10,7 +10,11 @@ import com.mysql.cj.xdevapi.Statement;
 // ConnectionTest + SelectTest 합친 실습
 public class SelectTest {
 
-	static final String dbur1 = "jdbc:mysql://localhost:3306/hrdb";
+								// 통신 규약 ->  jdbc:mysql:      (중요)
+								// 주소 : //localhost
+								// 포트 : 3306
+								// 패스 정보 : hrdb
+	static final String dbur1 = "jdbc:mysql://localhost:3306/hrdb";			// URL (문서의 식별자, 문서의 위치)
 			      //jdbc:		// 위치		   // 스키마
 	static final String dbuser = "hrdb";	
 	static final String dbpass = "hrdb";
